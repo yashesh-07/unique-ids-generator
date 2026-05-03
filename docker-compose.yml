@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  # Node 1: Machine ID 1
+  id_gen_1:
+    build: .
+    ports:
+      - "8001:8000"
+    environment:
+      - MACHINE_ID=1
+      - EPOCH=1672531200000 # Jan 1, 2023
+    networks:
+      - id_network
+
+  # Node 2: Machine ID 2
+  id_gen_2:
+    build: .
+    ports:
+      - "8002:8000"
+    environment:
+      - MACHINE_ID=2
+      - EPOCH=1672531200000
+    networks:
+      - id_network
+
+  # Node 3: Machine ID 3
+  id_gen_3:
+    build: .
+    ports:
+      - "8003:8000"
+    environment:
+      - MACHINE_ID=3
+      - EPOCH=1672531200000
+    networks:
+      - id_network
+
+networks:
+  id_network:
+    driver: bridge
